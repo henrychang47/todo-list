@@ -23,6 +23,7 @@ function hideNewProjectForm() {
 
   warnMessage.innerText = '';
   input.style.outlineColor = 'black';
+  input.value = '';
 }
 
 function submitProjectForm() {
