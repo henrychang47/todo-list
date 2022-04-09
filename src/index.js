@@ -1,6 +1,6 @@
 import './style.css';
-import { compareAsc, format } from 'date-fns';
+import { displayProjects } from './modules/addProjectForm';
+import Project from './modules/project';
 
-const d = format(new Date(), 'yyyy-MM-dd');
-
-console.log(d);
+const projectList = [];
+projectList.push(new Project('projectA'));

@@ -5,11 +5,33 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ToDo</title>
 </head>
 
 <body>
-  aaaaa
+  <div class="newProjectBackground">
+  </div>
+  <div class="newProjectForm absolutelyCentered">
+    <span class="newProjectForm-title">New Project</span>
+    <button class="newProjectForm-cancelButton">
+      ×
+    </button>
+    <label for="newProjectForm-input" class="newProjectForm-label">
+      Name:<span class="newProjectForm-warnMessage"></span>
+    </label>
+    <input id="newProjectForm-input" type="text">
+    <button class="newProjectForm-submitButton">
+      Add Project
+    </button>
+  </div>
+  <div class="sideBar">
+    <div>Projects <button class="sideBar-newProjectButton">+</button></div>
+    <div class="sideBar-projectList">
+      project1
+      project2
+    </div>
+  </div>
+  <div class="taskDisplay"></div>
 </body>
 
 </html>
