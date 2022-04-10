@@ -1,4 +1,5 @@
 import { set } from 'date-fns';
+import './newTaskForm';
 import './style.css';
 
 const tasksDisplay = document.querySelector('.tasksDisplay');
@@ -15,8 +16,12 @@ export function displayTasks(project) {
 
 function createElement(task) {
   let element = document.createElement('div');
-  element.innerText = task.title;
+  let title = document.createElement('div');
 
+  element.classList.add('task');
+  title.innerText = task.title;
+
+  element.append(title);
   return element;
 }
 

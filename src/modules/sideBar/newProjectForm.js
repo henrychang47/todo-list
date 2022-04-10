@@ -2,7 +2,7 @@ import './newProjectForm.css';
 import data from '../data';
 import { displayList } from '.';
 const newProjectButton = document.querySelector('.sideBar-newProjectButton');
-const background = document.querySelector('.newProjectBackground');
+const background = document.querySelector('.maskBackground');
 const form = document.querySelector('.newProjectForm');
 const cancelButton = form.querySelector('.newProjectForm-cancelButton');
 const input = form.querySelector('input');

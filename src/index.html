@@ -9,8 +9,7 @@
 </head>
 
 <body>
-  <div class="newProjectBackground">
-  </div>
+  <div class="maskBackground"></div>
   <div class="newProjectForm absolutelyCentered">
     <span class="newProjectForm-title">New Project</span>
     <button class="newProjectForm-cancelButton">
@@ -24,6 +23,21 @@
       Add Project
     </button>
   </div>
+  <div class="newTaskForm absolutelyCentered">
+    <span class="newTaskForm-title">New Task</span>
+    <button class="newTaskForm-cancelButton">
+      ×
+    </button>
+    <Form newTaskForm-form>
+      <label for="taskTitle">title<input type="text" id="taskTitle"></label>
+      <label for="taskDescription">title<textarea type="text" id="taskDescription"></textarea></label>
+      <label for="taskTitle">title<input type="text" id="taskTitle"></label>
+      <label for="taskTitle">title<input type="text" id="taskTitle"></label>
+    </Form>
+    <button class="newTaskForm-submitButton">
+      Add Task
+    </button>
+  </div>
   <div class="sideBar">
     <div>
       <span class="sideBar-title">Projects</span>
@@ -33,7 +47,10 @@
     </div>
   </div>
   <div class="tasksDisplay">
-    <span class="tasksDisplay-title">Tasks</span>
+    <div>
+      <div class="tasksDisplay-title">Tasks</div>
+      <button class="tasksDisplay-newProjectButton">+</button>
+    </div>
     <div class="tasksDisplay-list"></div>
   </div>
 </body>
