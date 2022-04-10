@@ -5,8 +5,6 @@ import { displayTasks } from '../tasksDisplay';
 
 const sideBar = document.querySelector('.sideBar');
 const projectList = document.querySelector('.sideBar-projectList');
-const mainColor =
-  getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
 
 export function displayList() {
   projectList.innerHTML = '';
@@ -30,11 +28,10 @@ function selectProject(project) {
   data.switchCurrentProject(project);
   changeProjectBackgroundColor();
   displayTasks(project);
-  console.log(`${data.currentProject.name}: ${data.currentProject.taskList}`);
 }
 
 function changeProjectBackgroundColor() {
-  data.currentProject.element.style.backgroundColor = mainColor;
+  data.currentProject.element.style.backgroundColor = data.mainColor;
   if (data.lastProject) {
     data.lastProject.element.style.backgroundColor = 'transparent';
   }

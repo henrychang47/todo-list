@@ -1,6 +1,6 @@
 import Project from "./project";
 
-export default new class {
+export default new class Data {
   constructor() {
     this.projectList = [];
     this.lastProject = null;
@@ -16,4 +16,17 @@ export default new class {
     this.lastProject = this.currentProject;
     this.currentProject = project;
   }
+
+  set mainColor(color) {
+    document.documentElement.style.setProperty('--mainColor', color);
+    if (this.currentProject) {
+      this.currentProject.element.style.backgroundColor = this.mainColor;
+    }
+  }
+
+  get mainColor() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
+  }
+
+
 }
