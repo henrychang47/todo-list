@@ -39,6 +39,7 @@
   position: relative;
   bottom: 55px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .newProjectForm-cancelButton:hover {

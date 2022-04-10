@@ -1,5 +1,6 @@
 import './newProjectForm.css';
-
+import data from '../data';
+import { displayList } from '.';
 const newProjectButton = document.querySelector('.sideBar-newProjectButton');
 const background = document.querySelector('.newProjectBackground');
 const form = document.querySelector('.newProjectForm');
@@ -8,7 +9,7 @@ const input = form.querySelector('input');
 const submitButton = form.querySelector('.newProjectForm-submitButton');
 const warnMessage = form.querySelector('.newProjectForm-warnMessage');
 const sideBar = document.querySelector('.sideBar');
-const taskDisplay = document.querySelector('.taskDisplay');
+const tasksDisplay = document.querySelector('.tasksDisplay');
 
 newProjectButton.addEventListener('click', showForm);
 cancelButton.addEventListener('click', hideForm);
@@ -25,7 +26,7 @@ function showForm() {
   form.style.visibility = 'visible';
   form.style.transform = 'scale(1)';
   sideBar.style.filter = 'blur(5px)';
-  taskDisplay.style.filter = 'blur(5px)';
+  tasksDisplay.style.filter = 'blur(5px)';
 }
 
 function hideForm() {
@@ -36,7 +37,7 @@ function hideForm() {
   input.style.outlineColor = 'black';
   input.value = '';
   sideBar.style.filter = 'none';
-  taskDisplay.style.filter = 'none';
+  tasksDisplay.style.filter = 'none';
 }
 
 function submitForm(e) {
@@ -46,9 +47,12 @@ function submitForm(e) {
 
   if (inputValue.length == 0) {
     warn("Project name is required");
+    return;
   }
 
-  console.log(inputValue);
+  data.addNewProject(inputValue);
+  displayList();
+  hideForm();
 }
 
 function onInput() {

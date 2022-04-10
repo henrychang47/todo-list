@@ -1,0 +1,13 @@
+.tasksDisplay {
+  background-color: rgb(246, 234, 236);
+  flex: 1;
+  padding: 20px 20px;
+  text-align: center;
+  overflow: auto;
+}
+
+.tasksDisplay-title {
+  font-size: 3rem;
+  text-shadow: 5px 5px 5px var(--mainColor);
+  font-weight: 600;
+}
