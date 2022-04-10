@@ -1,5 +1,6 @@
+import './modules/newProjectForm';
 import './style.css';
-import { displayProjects } from './modules/addProjectForm';
+
 import Project from './modules/project';
 
 const projectList = [];
