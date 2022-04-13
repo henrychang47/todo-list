@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ToDo</title>
+  <link rel="shortcut icon" href="#" type="image/x-icon">
 </head>
 
 <body>
@@ -28,15 +29,18 @@
     <button class="newTaskForm-cancelButton">
       ×
     </button>
-    <Form newTaskForm-form>
-      <label for="taskTitle">title<input type="text" id="taskTitle"></label>
-      <label for="taskDescription">title<textarea type="text" id="taskDescription"></textarea></label>
-      <label for="taskTitle">title<input type="text" id="taskTitle"></label>
-      <label for="taskTitle">title<input type="text" id="taskTitle"></label>
-    </Form>
+    <input type="text" id="taskTitleInput" placeholder="Title">
+    <textarea type="text" id="taskDescriptionInput" placeholder="Description"></textarea>
+    <input type="date" id="taskTimeInput">
+    <div id="taskPriorityInput">
+      <div class="priorityHigh"></div>
+      <div class="priorityMedium">Medium</div>
+      <div class="priorityLow"></div>
+    </div>
     <button class="newTaskForm-submitButton">
       Add Task
     </button>
+    <span class="newTaskForm-Warnning"></span>
   </div>
   <div class="sideBar">
     <div>
