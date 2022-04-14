@@ -28,5 +28,11 @@ export default new class Data {
     return getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
   }
 
+  saveToLocal() {
 
+  }
+
+  getFromLocal() {
+
+  }
 }

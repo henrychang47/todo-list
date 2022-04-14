@@ -1,4 +1,6 @@
 import { set } from 'date-fns';
+import { fi } from 'date-fns/locale';
+import data from '../data';
 import './newTaskForm';
 import './style.css';
 
@@ -16,30 +18,44 @@ export function displayTasks(project) {
 
 function createElement(task) {
   let element = document.createElement('div');
-  // let title = document.createElement('div');
-  // let dueDate = document.createElement('div');
-  // let priority = document.createElement('div');
-
   element.classList.add('task');
+  let title = document.createElement('div');
+  title.classList.add('title');
+  title.innerText = task.title;
+  let editButton = document.createElement('div');
+  editButton.classList.add('material-icons', 'edit');
+  editButton.innerText = 'edit';
+  let deleteButton = document.createElement('div');
+  deleteButton.classList.add('material-icons', 'delete');
+  deleteButton.innerText = 'delete';
 
-  // title.innerText = task.title;
-  // dueDate.innerText = task.dueDate;
+  title.append(editButton, deleteButton);
+  element.append(title);
 
-
-  // element.append(title, dueDate);
-
-  element.innerHTML = `
-    <div class='title'>${task.title}</div>
+  element.innerHTML += `
     <div class='date'>${task.dueDate || '---'}</div>
     <div class='${task.priority} priority'></div>
     `;
 
-  element.addEventListener('click', e => toggleOpen(element, task.description));
+  element.addEventListener('click', e => {
+    let targetClass = e.target.classList.value;
+    if (targetClass.indexOf('edit') != -1) {
+      console.log('edit');
+    }
+    else if (targetClass.indexOf('delete') != -1) {
+      // console.log('delete' + task.title);
+      data.currentProject.removeTask(task);
+      displayTasks(data.currentProject);
+    }
+    else {
+      toggleOpen(e, element, task.description);
+    }
+  }, false);
 
   return element;
 }
 
-function toggleOpen(element, descriptionContent) {
+function toggleOpen(e, element, descriptionContent) {
   element.classList.toggle('open');
   if (element.classList.contains('open')) {
     let descriptionElement = document.createElement('textarea');

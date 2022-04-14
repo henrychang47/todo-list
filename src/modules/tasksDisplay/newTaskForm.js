@@ -118,13 +118,7 @@ function submitForm(e) {
 
 function checkTitleInput(input) {
   if (input) return input;
-
 }
-
-// function onInput() {
-//   warnMessage.innerText = '';
-//   input.style.outlineColor = 'black';
-// }
 
 function warn(target) {
   target.focus();

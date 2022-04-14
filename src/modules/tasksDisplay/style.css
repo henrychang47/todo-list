@@ -51,7 +51,7 @@
   border-radius: 10px;
   height: 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr 15%;
+  grid-template-columns: 1fr 120px 15%;
   grid-template-rows: 50px;
   align-items: center;
   font-size: 2rem;
@@ -73,10 +73,14 @@
 
 .task .title {
   justify-self: start;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .task .date {
   font-size: 1rem;
+  justify-self: start;
 }
 
 .task .priority {
@@ -99,4 +103,9 @@
 
 .task.open .description:active {
   outline: none;
+}
+
+.material-icons:hover {
+  color: red;
+  cursor: pointer;
 }
