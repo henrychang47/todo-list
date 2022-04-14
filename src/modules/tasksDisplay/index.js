@@ -43,8 +43,7 @@ function createElement(task) {
       console.log('edit');
     }
     else if (targetClass.indexOf('delete') != -1) {
-      // console.log('delete' + task.title);
-      data.currentProject.removeTask(task);
+      data.currentProject.deleteTask(task);
       displayTasks(data.currentProject);
     }
     else {

@@ -5,6 +5,7 @@ import { displayTasks } from '../tasksDisplay';
 
 const sideBar = document.querySelector('.sideBar');
 const projectList = document.querySelector('.sideBar-projectList');
+const deleteButton = document.querySelector('.deleteProject');
 
 export function displayList() {
   projectList.innerHTML = '';
@@ -15,13 +16,22 @@ export function displayList() {
 
 function createProjectElement(project) {
   let element = document.createElement('div');
-  element.append('- ', `${project.name}`);
+  let deleteButton = document.createElement('div');
+  deleteButton.innerHTML = `<span class="material-icons deletePorject">delete</span>`
+  element.append('- ', `${project.name}`, deleteButton);
   element.classList.add('project');
   project.element = element;
 
   element.addEventListener('click', () => selectProject(project));
 
+  deleteButton.addEventListener('click', (e) => deletePorject(e, project));
+
   return element;
+}
+
+function deletePorject(e, project) {
+  data.deleteProject(project);
+  displayList();
 }
 
 function selectProject(project) {

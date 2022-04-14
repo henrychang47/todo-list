@@ -10,6 +10,7 @@ export default new class Data {
   addNewProject(name) {
     let newProject = new Project(name);
     this.projectList.push(newProject);
+    this.saveToLocal();
   }
 
   switchCurrentProject(project) {
@@ -28,11 +29,22 @@ export default new class Data {
     return getComputedStyle(document.documentElement).getPropertyValue('--mainColor');
   }
 
-  saveToLocal() {
+  deleteProject(targetProject) {
+    let targetIndex = this.projectList.findIndex(checkingProject => {
+      return targetProject === checkingProject;
+    });
+    this.projectList.splice(targetIndex, 1);
+    this.saveToLocal();
+  }
 
+  saveToLocal() {
+    localStorage.setItem('todoData', JSON.stringify(this.projectList));
   }
 
   getFromLocal() {
-
+    this.projectList = JSON.parse(localStorage.getItem('todoData'));
+    this.projectList.forEach(project => {
+      project.__proto__ = Project.prototype;
+    });
   }
 }

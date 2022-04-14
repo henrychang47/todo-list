@@ -1,3 +1,5 @@
+import data from "./data";
+
 export default class Project {
   constructor(name) {
     this.name = name;
@@ -7,14 +9,14 @@ export default class Project {
 
   addTask(task) {
     this.taskList.push(task);
+    data.saveToLocal();
   }
 
-  removeTask(targetTask) {
-    // console.log(this.taskList);
+  deleteTask(targetTask) {
     let targetIndex = this.taskList.findIndex(checkingTask => {
       return targetTask === checkingTask;
     });
-    console.log(targetIndex);
     this.taskList.splice(targetIndex, 1);
+    data.saveToLocal();
   }
 }

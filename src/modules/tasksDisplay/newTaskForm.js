@@ -64,7 +64,6 @@ function selectPriority(priority) {
       priorityHigh.innerText = 'High';
       priorityMedium.innerText = '';
       priorityLow.innerText = '';
-      // console.log(taskPriorityInput.innerText);
       priorityHigh.style.width = setlectedWidth;
       priorityMedium.style.width = noneSelectedWidth;
       priorityLow.style.width = noneSelectedWidth;
@@ -105,13 +104,9 @@ function submitForm(e) {
     warn(taskDescription);
     return;
   }
-
-  data.currentProject.taskList.push(new Task(title, description, time, priority));
+  data.currentProject.addTask(new Task(title, description, time, priority));
+  // data.currentProject.taskList.push(new Task(title, description, time, priority));
   displayTasks(data.currentProject);
-  console.log(title);
-  console.log(description);
-  console.log(time);
-  console.log(priority);
 
   hideForm();
 }
