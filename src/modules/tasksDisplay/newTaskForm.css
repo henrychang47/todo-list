@@ -38,7 +38,7 @@
   font-size: 60px;
   justify-self: end;
   position: relative;
-  bottom: 55px; 
+  bottom: 55px;
   margin-right: 10px;
   cursor: pointer;
 }
@@ -47,65 +47,75 @@
   color: white;
 }
 
-#taskTitleInput{
+#taskTitleInput {
   grid-column: 1/3;
   font-size: 1.5rem;
-  padding-left:10px;
-  border:none;
+  padding-left: 10px;
+  border: none;
 }
 
-#taskDescriptionInput{
+#taskDescriptionInput {
   font-size: 1rem;
-  padding:10px;
+  padding: 10px;
   grid-column: 1/3;
   resize: none;
-  border:none;
+  border: none;
 }
 
-.warnning{
-   animation-name: warnning;
+.warnning {
+  animation-name: warnning;
   animation-duration: 0.25s;
   animation-iteration-count: infinite;
 }
 
 @keyframes warnning {
-  0%{outline-color: black;}
-  50%{outline-color: red;}
-  100%{outline-color: black;}
+  0% {
+    outline-color: black;
+  }
+
+  50% {
+    outline-color: red;
+  }
+
+  100% {
+    outline-color: black;
+  }
 }
 
-#taskTimeInput{
+#taskTimeInput {
   font-size: 1rem;
-  padding:10px;
-  border:none;
+  padding: 10px;
+  border: none;
 }
 
-#taskPriorityInput{
+#taskPriorityInput {
   display: flex;
   flex: 1;
   line-height: 60px;
-  width:100%;
+  width: 100%;
   border-radius: 10px;
   cursor: pointer;
 }
 
-#taskPriorityInput div{
+#taskPriorityInput div {
   transition: width ease-in-out 0.3s;
   text-align: center;
   font-size: 2rem;
 }
 
-#taskPriorityInput .priorityHigh{
+#taskPriorityInput .priorityHigh {
   background-color: rgba(255, 0, 0, 0.7);
-  width:15%;
+  width: 15%;
 }
-#taskPriorityInput .priorityMedium{
+
+#taskPriorityInput .priorityMedium {
   background-color: rgba(255, 255, 0, 0.7);
-  width:70%;
+  width: 70%;
 }
-#taskPriorityInput .priorityLow{
+
+#taskPriorityInput .priorityLow {
   background-color: rgba(0, 128, 0, 0.7);
-  width:15%;
+  width: 15%;
 }
 
 .newTaskForm-submitButton {
@@ -128,10 +138,42 @@
   box-shadow: 0 0 5px var(--mainColor);
 }
 
-.newTaskForm-Warnning{
-  position:relative;
+.newTaskForm-Warnning {
+  position: relative;
   font-size: 1.5rem;
-  bottom:50px;
-  left:20px;
-  color:red;
+  bottom: 50px;
+  left: 20px;
+  color: red;
 }
+
+.High {
+  width: 15%;
+  height: 100%;
+  background-color: red;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.Medium {
+  width: 15%;
+  height: 100%;
+  background-color: yellow;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.Low {
+  width: 15%;
+  height: 100%;
+  background-color: green;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.detailed {
+  height: 100%;
+  width: 100%;
+  background-color: orange;
+}
+
+/* .task .material-icons {} */
