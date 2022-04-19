@@ -105,6 +105,10 @@
   outline: none;
 }
 
+.description {
+  background-color: white;
+}
+
 .material-icons:hover {
   color: red;
   cursor: pointer;

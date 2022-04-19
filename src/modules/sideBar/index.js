@@ -3,9 +3,8 @@ import './newProjectForm';
 import data from '../data';
 import { displayTasks } from '../tasksDisplay';
 
-const sideBar = document.querySelector('.sideBar');
 const projectList = document.querySelector('.sideBar-projectList');
-const deleteButton = document.querySelector('.deleteProject');
+const colorPicker = document.querySelector('.sideBar-colorPicker');
 
 export function displayList() {
   projectList.innerHTML = '';
@@ -17,19 +16,21 @@ export function displayList() {
 function createProjectElement(project) {
   let element = document.createElement('div');
   let deleteButton = document.createElement('div');
-  deleteButton.innerHTML = `<span class="material-icons deletePorject">delete</span>`
-  element.append('- ', `${project.name}`, deleteButton);
+  deleteButton.classList.add('hideButton');
+  deleteButton.innerHTML = `<span class="material-icons deleteProject">delete</span>`
+  element.append(`${project.name}`, deleteButton);
   element.classList.add('project');
   project.element = element;
 
   element.addEventListener('click', () => selectProject(project));
-
-  deleteButton.addEventListener('click', (e) => deletePorject(e, project));
+  element.addEventListener('mouseenter', (e) => { showDeleteButton(e) });
+  element.addEventListener('mouseleave', (e) => { hideDeleteButton(e) });
+  deleteButton.addEventListener('click', (e) => deleteProject(e, project));
 
   return element;
 }
 
-function deletePorject(e, project) {
+function deleteProject(e, project) {
   data.deleteProject(project);
   displayList();
 }
@@ -46,5 +47,35 @@ function changeProjectBackgroundColor() {
     data.lastProject.element.style.backgroundColor = 'transparent';
   }
 }
+
+function showDeleteButton(e) {
+  e.target.lastElementChild.classList.remove('hideButton');
+}
+
+function hideDeleteButton(e) {
+  e.target.lastElementChild.classList.add('hideButton');
+}
+
+((function setColorPicker() {
+  let colors = ['#95DBE5', '#F8A055', '#FDD475', '#B3DE81'];
+  let colorElements = colors.map(color => {
+    let colorBox = document.createElement('div');
+    colorBox.classList.add('colorPicker-colorBox');
+    if (colors.indexOf(color) === 0) colorBox.classList.add('pick');
+    colorBox.style.backgroundColor = color;
+    colorPicker.appendChild(colorBox);
+
+    return colorBox;
+  });
+
+  colorElements.forEach(element => {
+    element.addEventListener('click', () => {
+      data.mainColor = colors[colorElements.indexOf(element)];
+      colorElements.map(element => element.classList.remove('pick'));
+      element.classList.add('pick');
+    });
+  });
+
+})());
 
 export default { displayList };

@@ -53,6 +53,33 @@
   flex-direction: column;
 }
 
+.sideBar-colorPicker {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 50px;
+  bottom: 20px;
+  width: 220px;
+  height: 50px;
+}
+
+.colorPicker-colorBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 6px solid #f7f7f7;
+  cursor: pointer;
+}
+
+.colorPicker-colorBox:hover {
+  transform: scale(1.1);
+}
+
+.colorPicker-colorBox.pick {
+  border: none;
+}
+
 .project {
   cursor: pointer;
   border-radius: 10px;
@@ -65,4 +92,8 @@
 
 .project:hover {
   background-color: var(--mainColor) !important;
+}
+
+.hideButton {
+  visibility: hidden;
 }

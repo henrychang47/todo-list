@@ -23,10 +23,10 @@ function createElement(task) {
   title.classList.add('title');
   title.innerText = task.title;
   let editButton = document.createElement('div');
-  editButton.classList.add('material-icons', 'edit');
+  editButton.classList.add('material-icons', 'edit', 'hideButton');
   editButton.innerText = 'edit';
   let deleteButton = document.createElement('div');
-  deleteButton.classList.add('material-icons', 'delete');
+  deleteButton.classList.add('material-icons', 'delete', 'hideButton');
   deleteButton.innerText = 'delete';
 
   title.append(editButton, deleteButton);
@@ -37,6 +37,8 @@ function createElement(task) {
     <div class='${task.priority} priority'></div>
     `;
 
+  element.addEventListener('mouseenter', (e) => { showDeleteButton(e) });
+  element.addEventListener('mouseleave', (e) => { hideDeleteButton(e) });
   element.addEventListener('click', e => {
     let targetClass = e.target.classList.value;
     if (targetClass.includes('delete')) {
@@ -70,4 +72,14 @@ function toggleOpen(e, element, descriptionContent) {
 
 function setTitle(text) {
   title.innerText = text;
+}
+
+function showDeleteButton(e) {
+  e.target.firstElementChild.children[0].classList.remove('hideButton');
+  e.target.firstElementChild.children[1].classList.remove('hideButton');
+}
+
+function hideDeleteButton(e) {
+  e.target.firstElementChild.children[0].classList.add('hideButton');
+  e.target.firstElementChild.children[1].classList.add('hideButton');
 }
