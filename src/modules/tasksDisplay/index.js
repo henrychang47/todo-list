@@ -1,7 +1,7 @@
 import { set } from 'date-fns';
 import { fi } from 'date-fns/locale';
 import data from '../data';
-import './newTaskForm';
+import { editTask } from './newTaskForm';
 import './style.css';
 
 const tasksDisplay = document.querySelector('.tasksDisplay');
@@ -39,14 +39,12 @@ function createElement(task) {
 
   element.addEventListener('click', e => {
     let targetClass = e.target.classList.value;
-    if (targetClass.indexOf('edit') != -1) {
-      console.log('edit');
-    }
-    else if (targetClass.indexOf('delete') != -1) {
+    if (targetClass.includes('delete')) {
       data.currentProject.deleteTask(task);
       displayTasks(data.currentProject);
-    }
-    else {
+    } else if (targetClass.includes('edit')) {
+      editTask(task);
+    } else {
       toggleOpen(e, element, task.description);
     }
   }, false);
@@ -56,9 +54,10 @@ function createElement(task) {
 
 function toggleOpen(e, element, descriptionContent) {
   element.classList.toggle('open');
+
   if (element.classList.contains('open')) {
     let descriptionElement = document.createElement('textarea');
-    descriptionElement.desable = true;
+    descriptionElement.disabled = true;
     descriptionElement.classList.add('description');
     descriptionElement.innerText = descriptionContent;
     element.insertAdjacentElement('beforeend', descriptionElement);

@@ -2,6 +2,7 @@ import './newTaskForm.css';
 import data from '../data';
 import Task from '../task';
 import { displayTasks } from '.';
+const formTitle = document.querySelector('.newTaskForm-title');
 const newTaskButton = document.querySelector('.tasksDisplay-newProjectButton');
 const background = document.querySelector('.maskBackground');
 const form = document.querySelector('.newTaskForm');
@@ -14,15 +15,16 @@ const priorityHigh = form.querySelector('.priorityHigh');
 const priorityMedium = form.querySelector('.priorityMedium');
 const priorityLow = form.querySelector('.priorityLow');
 const submitButton = form.querySelector('.newTaskForm-submitButton');
-const warnningText = form.querySelector('.newTaskForm-Warnning');
+const editButton = form.querySelector('.newTaskForm-editButton');
 
-// const warnMessage = form.querySelector('.newTaskForm-warnMessage');
 const sideBar = document.querySelector('.sideBar');
 const tasksDisplay = document.querySelector('.tasksDisplay');
 
 newTaskButton.addEventListener('click', showForm);
 cancelButton.addEventListener('click', hideForm);
-submitButton.addEventListener('click', submitForm);
+submitButton.addEventListener('click', () => { submitAddForm() });
+editButton.addEventListener('click', () => { submitEditForm({ task: data.editingTask }) });
+
 setTimeout(() => {
   form.style.transition = 'all 0.3s';
 }, 300);
@@ -33,7 +35,18 @@ setTimeout(() => {
   });
 });
 
-function showForm() {
+function showForm({ edit }) {
+  if (edit) {
+    formTitle.innerText = 'Edit Task';
+    submitButton.style.display = 'none';
+    editButton.style.display = '';
+    setEditingValueInput();
+  } else {
+    formTitle.innerText = 'Add Task';
+    submitButton.style.display = '';
+    editButton.style.display = 'none';
+  }
+
   if (data.currentProject === null) return;
   background.style.visibility = 'visible';
   form.style.visibility = 'visible';
@@ -53,6 +66,7 @@ function hideForm() {
   taskDescription.value = '';
   taskTime.value = '';
   selectPriority('priorityMedium');
+  data.editingTask = null;
 }
 
 function selectPriority(priority) {
@@ -89,7 +103,7 @@ function selectPriority(priority) {
   }
 }
 
-function submitForm(e) {
+function submitAddForm() {
   let title = checkTitleInput(taskTitle.value);
   let description = taskDescription.value;
   let time = taskTime.value;
@@ -99,15 +113,35 @@ function submitForm(e) {
     warn(taskTitle);
     return;
   }
-
   if (!description) {
     warn(taskDescription);
     return;
   }
-  data.currentProject.addTask(new Task(title, description, time, priority));
-  // data.currentProject.taskList.push(new Task(title, description, time, priority));
-  displayTasks(data.currentProject);
 
+  data.currentProject.addTask(new Task(title, description, time, priority));
+
+  displayTasks(data.currentProject);
+  hideForm();
+}
+
+function submitEditForm({ task }) {
+  let title = checkTitleInput(taskTitle.value);
+  let description = taskDescription.value;
+  let time = taskTime.value;
+  let priority = taskPriority.innerText;
+
+  if (!title) {
+    warn(taskTitle);
+    return;
+  }
+  if (!description) {
+    warn(taskDescription);
+    return;
+  }
+
+  data.currentProject.editTask(task, title, description, time, priority);
+
+  displayTasks(data.currentProject);
   hideForm();
 }
 
@@ -122,3 +156,16 @@ function warn(target) {
     target.classList.remove('warnning');
   }, 500);
 }
+
+function setEditingValueInput() {
+  taskTitle.value = data.editingTask.title;
+  taskDescription.value = data.editingTask.description;
+  taskTime.value = data.editingTask.dueDate;
+  selectPriority(`priority${data.editingTask.priority}`);
+}
+
+export function editTask(task) {
+  data.editingTask = task;
+  showForm({ edit: true });
+}
+

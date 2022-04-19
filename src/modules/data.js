@@ -5,6 +5,8 @@ export default new class Data {
     this.projectList = [];
     this.lastProject = null;
     this.currentProject = null;
+    this.editingTask = null;
+    this.editingProject = null;
   }
 
   addNewProject(name) {
@@ -47,4 +49,5 @@ export default new class Data {
       project.__proto__ = Project.prototype;
     });
   }
+
 }

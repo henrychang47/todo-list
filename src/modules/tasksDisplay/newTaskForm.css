@@ -118,6 +118,7 @@
   width: 15%;
 }
 
+.newTaskForm-editButton,
 .newTaskForm-submitButton {
   color: white;
   background-color: var(--mainColor);
@@ -133,6 +134,7 @@
   font-size: 24px;
 }
 
+.newTaskForm-editButton:hover,
 .newTaskForm-submitButton:hover {
   text-shadow: 0 0 3px white;
   box-shadow: 0 0 5px var(--mainColor);
